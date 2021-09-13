@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog';
 import { PokeList, PokeDetails } from './poke-models'
 import { Injectable } from '@angular/core'
@@ -13,14 +13,16 @@ import { PokeDialogComponent } from './poke-dialog/poke-dialog.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'pokedex-angular'
-  offset = 0;
-  limit = 10;
+  offset = 0
+  limit = 10
   pokeDetails: PokeDetails | null = null
   pokeList: PokeList | null = null
 
-  constructor(private pokeApi: PokeApiService, private dialog: MatDialog) { 
+  constructor(private pokeApi: PokeApiService, private dialog: MatDialog) { }
+  
+  ngOnInit(): void {
     this.getPokeList()
   }
 
@@ -41,7 +43,7 @@ export class AppComponent {
   }
 
   getPokeList(offset = this.offset, limit = this.limit) {
-    this.offset = offset;
+    this.offset = offset
     this.limit = limit
     this.pokeApi.getPokeList(this.offset, this.limit)
     .subscribe( pokeList => this.pokeList = pokeList)
