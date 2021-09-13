@@ -37,9 +37,7 @@ export class AppComponent {
       data: {
         id: index + this.offset
       }
-    }
-
-    )
+    })
   }
 
   getPokeList(offset = this.offset, limit = this.limit) {
